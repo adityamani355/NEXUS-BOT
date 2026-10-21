@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: nexusbot-control
+    runtime: docker
+    plan: starter
+    healthCheckPath: /
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: OWNER_ID
+        sync: false
+      - key: WEB_SECRET
+        generateValue: true
+      - key: DASHBOARD_USER
+        value: admin
+      - key: DASHBOARD_PASSWORD
+        sync: false
+      - key: PORT
+        value: 8080
+      - key: DB_PATH
+        value: /data/nexusbot.sqlite3
+    disk:
+      name: nexusbot-data
+      mountPath: /data
+      sizeGB: 1
